@@ -9,17 +9,27 @@
 
     <Window.Resources>
 
-        <!-- ControlTemplate must specify its TargetType -->
-        <ControlTemplate x:Key="MyButtonTemplate" TargetType="Button">
-            <!-- TemplateBinding binds the Button's Background to the Ellipse's Fill property-->
-            <Ellipse Fill="{TemplateBinding Background}" />
+        <!-- A ControlTemplate must specify a TargetType -->
+        <ControlTemplate x:Key="MyButtonControlTemplate" TargetType="Button">
+            <!-- Its content describes what its TargetType will look like -->
+            <Grid>
+                <!-- TemplateBinding binds the TargetType's Background property to the Fill property-->
+                <Rectangle Fill="{TemplateBinding Background}" RadiusX="10" RadiusY="10"/>
+
+                <ContentPresenter Content="{TemplateBinding Content}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Grid>
         </ControlTemplate>
 
     </Window.Resources>
     
     <Grid>
-        <!-- A Button's Template defines what a button looks like -->
-        <Button Width="140" Height="100" Background="Orange" Content="OK"
-                Template="{StaticResource MyButtonTemplate}" />
+        <!-- To change what a Controls looks like, set its Template to a ControlTemplate -->
+        <Button Width="140" Height="60" Background="Beige" 
+                Template="{StaticResource MyButtonControlTemplate}" >
+            <!--<Ellipse Fill="Red" Width="80" Height="60" />-->
+            Click Me
+        </Button>
     </Grid>
 </Window>
